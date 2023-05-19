@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navigation } from "./components/Navitation";
+import { Home } from "./routes/Home";
+import { TimeStudy } from "./routes/TimeStudy";
+import { Lisence } from "./components/Lisence";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export const App = () => {
+    return (
+        <BrowserRouter>
+            <Navigation />
+            <Routes>
+                <Route path="/" index Component={Home} />
+                <Route path="/ts" Component={TimeStudy} />
+            </Routes>
+            <Lisence />
+        </BrowserRouter>
+    );
+};
