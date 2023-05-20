@@ -1,3 +1,5 @@
+import { FullScreen } from "../components/FullScreen";
+
 export const Home = () => {
-    return <span>HI</span>;
+    return <FullScreen>HI</FullScreen>;
 };

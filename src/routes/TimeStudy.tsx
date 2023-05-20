@@ -2,6 +2,19 @@ import { ChangeEventHandler, useEffect, useState } from "react";
 import { trees as generateTrees } from "../lib/tree";
 import { getAffordableStudiesFromStudyList } from "../functions/studies";
 import { PathButton } from "../components/PathButton";
+import { FullScreen } from "../components/FullScreen";
+import { styled } from "styled-components";
+import { Horizontal } from "../components/Horizontal";
+import { CopyButton } from "../components/CopyButton";
+
+const WrapPre = styled.pre`
+    overflow: scroll;
+    width: 80%;
+`;
+
+const Button = styled(CopyButton)`
+    width: 20%;
+`;
 
 export const TimeStudy = () => {
     const [getTrees, setTrees] = useState(generateTrees());
@@ -36,10 +49,6 @@ export const TimeStudy = () => {
         setPath("그런건 웁서용");
     };
 
-    const copyButtonClick = () => {
-        navigator.clipboard.writeText(getPath);
-    };
-
     useEffect(() => {
         setTrees(generateTrees(get2ndPath || undefined));
     }, [get2ndPath, getTheorms]);
@@ -49,28 +58,38 @@ export const TimeStudy = () => {
     });
 
     return (
-        <div>
-            <div>
-                <PathButton color="red" onClick={() => set2ndPath("active")}>
+        <FullScreen>
+            <h1>Current PATH: {get2ndPath || "active"}</h1>
+            <Horizontal>
+                <PathButton
+                    color="#ff0100"
+                    onClick={() => set2ndPath("active")}
+                >
                     Active
                 </PathButton>
-                <PathButton color="blue" onClick={() => set2ndPath("passive")}>
+                <PathButton
+                    color="#5e33b6"
+                    onClick={() => set2ndPath("passive")}
+                >
                     Passive
                 </PathButton>
-                <PathButton color="purple" onClick={() => set2ndPath("idle")}>
+                <PathButton color="#0080ff" onClick={() => set2ndPath("idle")}>
                     Idle
                 </PathButton>
-            </div>
-            <input
-                type="number"
-                onChange={onTheormsInput}
-                value={getTheorms.toString()}
-            />
-            <h1>Current PATH: {get2ndPath || "active"}</h1>
-            <div>
-                <pre>{getPath}</pre>
-                <button onClick={copyButtonClick}>click to copy</button>
-            </div>
-        </div>
+            </Horizontal>
+            <Horizontal>
+                You have
+                <input
+                    type="number"
+                    onChange={onTheormsInput}
+                    value={getTheorms.toString()}
+                />
+                Theorems
+            </Horizontal>
+            <Horizontal>
+                <WrapPre>{getPath}</WrapPre>
+                <Button text={getPath}>Copy!</Button>
+            </Horizontal>
+        </FullScreen>
     );
 };

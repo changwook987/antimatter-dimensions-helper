@@ -14,6 +14,8 @@ const StyledPathButton = styled.button`
     margin: 1rem;
     background: ${(props) => props.color || "gray"};
     transition: 0.2s;
+    width: 5em;
+
     &:hover {
         transform: scale(1.1);
     }

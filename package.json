@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://changwook987.github.io/antimatter-dimensions-helper",
   "dependencies": {
+    "@antimatter-dimensions/notations": "^3.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,6 +13,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "@types/react-router-dom": "^5.3.3",
+    "break_infinity.js": "^2.2.0",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
