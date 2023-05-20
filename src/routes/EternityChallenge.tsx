@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FullScreen } from "../components/FullScreen";
 import { Horizontal } from "../components/Horizontal";
-import { findEC } from "../utils/databases/eternitychallenges";
+import { findEC, order } from "../utils/databases/eternitychallenges";
 import { CopyButton } from "../components/CopyButton";
 import styled from "styled-components";
 
@@ -20,8 +20,32 @@ export const EternityChallge = () => {
 
     const [getTree, setTree] = useState("|0");
 
+    const clamp = (n: number, min: number, max: number) => {
+        return Math.max(Math.min(n, max), min);
+    };
+
+    const nextEC = () => {
+        const ec = `${getChallenge}x${getCompletion}`;
+        const nextEC = order[clamp(order.indexOf(ec) + 1, 0, order.length - 1)];
+        const [challenge, completion] = nextEC
+            .split("x")
+            .map((s) => parseInt(s));
+        setChallenge(challenge);
+        setCompletion(completion);
+    };
+    const prevEC = () => {
+        const ec = `${getChallenge}x${getCompletion}`;
+        const prevEC = order[clamp(order.indexOf(ec) - 1, 0, order.length - 1)];
+        const [challenge, completion] = prevEC
+            .split("x")
+            .map((s) => parseInt(s));
+        setChallenge(challenge);
+        setCompletion(completion);
+    };
+
     useEffect(() => {
-        const tree = findEC(getChallenge, getCompletion).tree;
+        const ec = findEC(getChallenge, getCompletion);
+        const tree = ec.tree;
         setTree(tree.substring(1, tree.length - 1));
     }, [getChallenge, getCompletion]);
 
@@ -60,6 +84,10 @@ export const EternityChallge = () => {
             <Horizontal>
                 <WrapPre>{getTree}</WrapPre>
                 <Button text={getTree}>Copy!</Button>
+            </Horizontal>
+            <Horizontal>
+                <button onClick={prevEC}>Prev EC</button>
+                <button onClick={nextEC}>Next EC</button>
             </Horizontal>
         </FullScreen>
     );
