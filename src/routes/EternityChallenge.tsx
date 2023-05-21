@@ -44,6 +44,15 @@ export const EternityChallge = () => {
         setCompletion(completion);
     };
 
+    const safeParseInt = (s: string) => {
+        const res = parseInt(s);
+        if (Number.isNaN(res)) {
+            return 0;
+        } else {
+            return res;
+        }
+    };
+
     useEffect(() => {
         const ec = findEC(getChallenge, getCompletion);
         const tree = ec.tree;
@@ -60,7 +69,10 @@ export const EternityChallge = () => {
                     onChange={(e) =>
                         setChallenge(
                             Math.min(
-                                Math.max(e.currentTarget.valueAsNumber, 1),
+                                Math.max(
+                                    safeParseInt(e.currentTarget.value),
+                                    1
+                                ),
                                 12
                             )
                         )
@@ -75,7 +87,10 @@ export const EternityChallge = () => {
                     onChange={(e) =>
                         setCompletion(
                             Math.min(
-                                Math.max(e.currentTarget.valueAsNumber, 1),
+                                Math.max(
+                                    safeParseInt(e.currentTarget.value),
+                                    1
+                                ),
                                 5
                             )
                         )
