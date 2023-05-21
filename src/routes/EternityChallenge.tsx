@@ -19,6 +19,7 @@ export const EternityChallge = () => {
     const [getCompletion, setCompletion] = useState(1);
 
     const [getTree, setTree] = useState("|0");
+    const [getTheorems, setTheorems] = useState(0);
 
     const clamp = (n: number, min: number, max: number) => {
         return Math.max(Math.min(n, max), min);
@@ -47,6 +48,7 @@ export const EternityChallge = () => {
         const ec = findEC(getChallenge, getCompletion);
         const tree = ec.tree;
         setTree(tree.substring(1, tree.length - 1));
+        setTheorems(ec.tt);
     }, [getChallenge, getCompletion]);
 
     return (
@@ -80,6 +82,10 @@ export const EternityChallge = () => {
                     }
                     value={getCompletion}
                 />
+            </Horizontal>
+            <br />
+            <Horizontal>
+                <b>{getTheorems}</b>개의 시간정리가 필요합니다
             </Horizontal>
             <Horizontal>
                 <WrapPre>{getTree}</WrapPre>

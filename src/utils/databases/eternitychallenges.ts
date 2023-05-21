@@ -265,7 +265,7 @@ export const EternityChallenges: EC[] = [
         tt: 140,
         ip: "`1e600`",
         note: "`To unlock the challenge, use TD, and then switch to the tree.`",
-        tree: `11,22,32,42,51,61,71,81,91,101,111,122,132,142,151,161,162,171|3`,
+        tree: "`11,22,32,42,51,61,71,81,91,101,111,122,132,142,151,161,162,171|3`",
         unlock: {
             currency: "8th Antimatter Dimensions",
             amount: SecondaryUnlocks["3"](0),
