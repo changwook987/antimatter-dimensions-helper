@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/antimatter-dimensions-helper/static/js/main.f956158a.js",
+    "main.js": "/antimatter-dimensions-helper/static/js/main.ed84fab1.js",
     "index.html": "/antimatter-dimensions-helper/index.html",
-    "main.f956158a.js.map": "/antimatter-dimensions-helper/static/js/main.f956158a.js.map"
+    "main.ed84fab1.js.map": "/antimatter-dimensions-helper/static/js/main.ed84fab1.js.map"
   },
   "entrypoints": [
-    "static/js/main.f956158a.js"
+    "static/js/main.ed84fab1.js"
   ]
 }
