@@ -36,6 +36,11 @@ const SelectButton = styled.button<{ selected?: boolean }>`
     }
 `;
 
+const StyledSpan = styled.span`
+    display: inline-block;
+    padding: 5px;
+`;
+
 export const EternityChallge = () => {
     const [getChallenge, setChallenge] = useState(1);
     const [getCompletion, setCompletion] = useState(1);
@@ -100,7 +105,9 @@ export const EternityChallge = () => {
     return (
         <FullScreen>
             <Horizontal>
-                Challenge
+                <StyledSpan>Challenge</StyledSpan>
+            </Horizontal>
+            <Horizontal>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => {
                     return (
                         <SelectButton
@@ -116,7 +123,9 @@ export const EternityChallge = () => {
                 })}
             </Horizontal>
             <Horizontal>
-                Completion
+                <StyledSpan>Completion</StyledSpan>
+            </Horizontal>
+            <Horizontal>
                 {[1, 2, 3, 4, 5].map((n) => {
                     return (
                         <SelectButton

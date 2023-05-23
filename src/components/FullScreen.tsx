@@ -7,4 +7,5 @@ export const FullScreen = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
+    padding-top: 3rem;
 `;
