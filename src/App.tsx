@@ -10,7 +10,7 @@ export const App = () => {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Navigation />
             <Routes>
-                <Route path="/" index Component={Home} />
+                <Route index path="/" element={<Home/>} />
                 <Route path="/ts" Component={TimeStudy} />
                 <Route path="/ec" Component={EternityChallge} />
             </Routes>

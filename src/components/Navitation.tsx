@@ -1,31 +1,42 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-
-const Nav = styled.nav`
-    width: 100vw;
-    height: 10vh;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const Link = styled(NavLink)`
-    font-weight: bold;
-    font-size: 3em;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-    padding: 5px;
-    margin-left: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-`;
+import { Link } from "react-router-dom";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 export const Navigation = () => {
     return (
-        <Nav>
-            <Link to="/">Home</Link>
-            <Link to="/ts">TimeStudy</Link>
-            <Link to="/ec">EternityChallenge</Link>
-        </Nav>
+        <Navbar bg="light" expand="lg">
+            <Container>
+                <Navbar.Brand as={Link} to="/">AD Helper</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Nav className="me-auto">
+                    <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    <NavDropdown title="∞ Infinity" id="basic-nav-dropdown">
+                        <NavDropdown.Item as={Link} to="/">Infinity</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item as={Link} to="/">Infinity Upgrades</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/">Challenge</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/">Break Infinity</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/">Infinity Challenge</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Δ Eternity" id="basic-nav-dropdown">
+                        <NavDropdown.Item as={Link} to="/">Eternity</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item as={Link} to="/ts">Time Studies</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/ec">Eternity Challenge</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Ϟ Reality" id="basic-nav-dropdown">
+                        <NavDropdown.Item as={Link} to="/">Reality</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item as={Link} to="/">Reality Upgrades</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/">Glyph</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/">Perk Tree</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/">Automator</NavDropdown.Item>
+
+                    </NavDropdown>
+                </Nav>
+                <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text>Options {"(soon)"}</Navbar.Text>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 };
