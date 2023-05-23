@@ -133,7 +133,9 @@ export const EternityChallge = () => {
             </Horizontal>
             <br />
             <Horizontal>
-                <b>{getTheorems}</b>개의 시간정리가 필요합니다
+                <span>
+                    You Need <b>{getTheorems}</b> Time Theorems
+                </span>
             </Horizontal>
             <Horizontal>
                 <WrapPre>{getTree}</WrapPre>

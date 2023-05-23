@@ -7,7 +7,8 @@ interface PathButtonProps extends PropsWithChildren {
 }
 
 const StyledPathButton = styled.button`
-    font-weight: bold;
+    font-weight: 600;
+    font-style: bold;
     font-size: 3em;
     padding: 0.5em;
     border-radius: 5px;
