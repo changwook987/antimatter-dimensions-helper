@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/antimatter-dimensions-helper/static/css/main.efcbbc64.css",
-    "main.js": "/antimatter-dimensions-helper/static/js/main.bb3a431b.js",
+    "main.js": "/antimatter-dimensions-helper/static/js/main.19fdf273.js",
     "index.html": "/antimatter-dimensions-helper/index.html",
     "main.efcbbc64.css.map": "/antimatter-dimensions-helper/static/css/main.efcbbc64.css.map",
-    "main.bb3a431b.js.map": "/antimatter-dimensions-helper/static/js/main.bb3a431b.js.map"
+    "main.19fdf273.js.map": "/antimatter-dimensions-helper/static/js/main.19fdf273.js.map"
   },
   "entrypoints": [
     "static/css/main.efcbbc64.css",
-    "static/js/main.bb3a431b.js"
+    "static/js/main.19fdf273.js"
   ]
 }
