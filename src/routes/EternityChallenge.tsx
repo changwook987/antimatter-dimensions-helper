@@ -1,45 +1,8 @@
 import { useEffect, useState } from "react";
-import { FullScreen } from "../components/FullScreen";
-import { Horizontal } from "../components/Horizontal";
 import { findEC, order } from "../utils/databases/eternitychallenges";
 import { CopyButton } from "../components/CopyButton";
-import styled from "styled-components";
-
-const WrapPre = styled.pre`
-    overflow: scroll;
-    width: 80%;
-`;
-
-const Button = styled(CopyButton)`
-    width: 20%;
-`;
-
-const SelectButton = styled.button<{ selected?: boolean }>`
-    background-color: ${(props) => (props.selected ? "green" : "white")};
-    color: ${(props) => (props.selected ? "white" : "black")};
-    border: 1px gray solid;
-    padding: 5px;
-    text-align: center;
-    transition: 0.2s;
-    border-left: none;
-    &:first-child {
-        border-left: 1px gray solid;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
-    &:last-child {
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
-    &:hover {
-        background-color: ${(props) => (props.selected ? "green" : "gray")};
-    }
-`;
-
-const StyledSpan = styled.span`
-    display: inline-block;
-    padding: 5px;
-`;
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export const EternityChallge = () => {
     const [getChallenge, setChallenge] = useState(1);
@@ -103,72 +66,99 @@ export const EternityChallge = () => {
     });
 
     return (
-        <FullScreen>
-            <Horizontal>
-                <StyledSpan>Challenge</StyledSpan>
-            </Horizontal>
-            <Horizontal>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => {
-                    return (
-                        <SelectButton
-                            key={n}
-                            onClick={() => {
-                                setChallenge(n);
-                            }}
-                            selected={getChallenge === n}
-                        >
-                            {n}
-                        </SelectButton>
-                    );
-                })}
-            </Horizontal>
-            <Horizontal>
-                <StyledSpan>Completion</StyledSpan>
-            </Horizontal>
-            <Horizontal>
-                {[1, 2, 3, 4, 5].map((n) => {
-                    return (
-                        <SelectButton
-                            key={n}
-                            onClick={() => {
-                                setCompletion(n);
-                            }}
-                            selected={getCompletion === n}
-                        >
-                            {n}
-                        </SelectButton>
-                    );
-                })}
-            </Horizontal>
-            <br />
-            <Horizontal>
-                <span>
-                    You Need <b>{getTheorems}</b> Time Theorems
-                </span>
-            </Horizontal>
-            <Horizontal>
-                <WrapPre>{getTree}</WrapPre>
-                <Button text={getTree}>Copy!</Button>
-            </Horizontal>
-            <Horizontal>
-                <SelectButton onClick={prevEC}>◀ Prev EC</SelectButton>
-                <SelectButton onClick={nextEC}>Next EC ▶</SelectButton>
-            </Horizontal>
+        <Container className="mt-5">
+            <Row className="justify-content-center">
+                <Col xs="auto">
+                    <Form.Label htmlFor="challenge">
+                        EternityChallenge
+                    </Form.Label>
+                    <InputGroup id="challenge">
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => {
+                            return (
+                                <Button
+                                    key={n}
+                                    onClick={() => setChallenge(n)}
+                                    variant={`${
+                                        getChallenge === n
+                                            ? "success"
+                                            : "outline-success"
+                                    }`}
+                                >
+                                    {n}
+                                </Button>
+                            );
+                        })}
+                    </InputGroup>
+                </Col>
+                <Col xs="auto">
+                    <Form.Label htmlFor="completion">Completion</Form.Label>
+                    <InputGroup id="completion">
+                        {[1, 2, 3, 4, 5].map((n) => {
+                            return (
+                                <Button
+                                    key={n}
+                                    onClick={() => {
+                                        setCompletion(n);
+                                    }}
+                                    variant={`${
+                                        getCompletion === n
+                                            ? "success"
+                                            : "outline-success"
+                                    }`}
+                                >
+                                    {n}
+                                </Button>
+                            );
+                        })}
+                    </InputGroup>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs="auto">
+                    <Form.Label htmlFor="tree">
+                        You Need <b>{getTheorems}</b> Time Theorems
+                    </Form.Label>
+                </Col>
+            </Row>
+            <InputGroup id="tree">
+                <Form.Control
+                    as="textarea"
+                    style={{ resize: "none" }}
+                    readOnly
+                    rows={1}
+                >
+                    {getTree}
+                </Form.Control>
+                <CopyButton text={getTree}>Copy!</CopyButton>
+            </InputGroup>
+            <Row className="mt-3 justify-content-center">
+                <Col xs="auto">
+                    <InputGroup className="mt-3">
+                        <Button onClick={prevEC}>◀ Prev EC</Button>
+                        <Button onClick={nextEC}>Next EC ▶</Button>
+                    </InputGroup>
+                </Col>
+            </Row>
             {getNote && (
-                <div>
-                    <br />
-                    <Horizontal>
-                        <span style={{ fontWeight: "bold", fontSize: "1.5em" }}>
+                <>
+                    <Row className="mt-3">
+                        <Col
+                            style={{
+                                fontWeight: "bold",
+                                fontSize: "1.5em",
+                                textAlign: "center",
+                            }}
+                        >
                             Note
-                        </span>
-                    </Horizontal>
-                    <Horizontal>
-                        <div style={{ width: "50em", textAlign: "center" }}>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col style={{ width: "50em", textAlign: "center" }}>
                             {getNote}
-                        </div>
-                    </Horizontal>
-                </div>
+                        </Col>
+                    </Row>
+                </>
             )}
-        </FullScreen>
+        </Container>
     );
 };

@@ -2,19 +2,9 @@ import { ChangeEventHandler, useEffect, useState } from "react";
 import { trees as generateTrees } from "../lib/tree";
 import { getAffordableStudiesFromStudyList } from "../functions/studies";
 import { PathButton } from "../components/PathButton";
-import { FullScreen } from "../components/FullScreen";
-import { styled } from "styled-components";
-import { Horizontal } from "../components/Horizontal";
 import { CopyButton } from "../components/CopyButton";
-
-const WrapPre = styled.pre`
-    overflow: scroll;
-    width: 80%;
-`;
-
-const Button = styled(CopyButton)`
-    width: 20%;
-`;
+import { Row, Container, Col, Form } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export const TimeStudy = () => {
     const [getTrees, setTrees] = useState(generateTrees());
@@ -58,38 +48,57 @@ export const TimeStudy = () => {
     });
 
     return (
-        <FullScreen>
-            <h1>Current PATH: {get2ndPath || "active"}</h1>
-            <Horizontal>
-                <PathButton
-                    color="#ff0100"
-                    onClick={() => set2ndPath("active")}
-                >
-                    Active
-                </PathButton>
-                <PathButton
-                    color="#5e33b6"
-                    onClick={() => set2ndPath("passive")}
-                >
-                    Passive
-                </PathButton>
-                <PathButton color="#0080ff" onClick={() => set2ndPath("idle")}>
-                    Idle
-                </PathButton>
-            </Horizontal>
-            <Horizontal>
-                You have
-                <input
+        <Container className="mt-5">
+            <Row className="justify-content-md-center">
+                <Col xs="auto">
+                    <h1>Current PATH: {get2ndPath || "active"}</h1>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col xs="auto">
+                    <PathButton
+                        color="#ff0100"
+                        onClick={() => set2ndPath("active")}
+                    >
+                        Active
+                    </PathButton>
+                </Col>
+                <Col xs="auto">
+                    <PathButton
+                        color="#5e33b6"
+                        onClick={() => set2ndPath("passive")}
+                    >
+                        Passive
+                    </PathButton>
+                </Col>
+                <Col xs="auto">
+                    <PathButton
+                        color="#0080ff"
+                        onClick={() => set2ndPath("idle")}
+                    >
+                        Idle
+                    </PathButton>
+                </Col>
+            </Row>
+            <InputGroup>
+                <InputGroup.Text>You have</InputGroup.Text>
+                <Form.Control
                     type="number"
                     onChange={onTheormsInput}
                     value={getTheorms.toString()}
                 />
-                Theorems
-            </Horizontal>
-            <Horizontal>
-                <WrapPre>{getPath}</WrapPre>
-                <Button text={getPath}>Copy!</Button>
-            </Horizontal>
-        </FullScreen>
+                <InputGroup.Text>Theorems</InputGroup.Text>
+            </InputGroup>
+            <InputGroup className="mt-3">
+                <Form.Control
+                    as="textarea"
+                    rows={1}
+                    value={getPath}
+                    readOnly
+                    style={{ resize: "none" }}
+                ></Form.Control>
+                <CopyButton text={getPath}>Copy!</CopyButton>
+            </InputGroup>
+        </Container>
     );
 };

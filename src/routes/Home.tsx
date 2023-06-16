@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { FullScreen } from "../components/FullScreen";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { keyframes, styled } from "styled-components";
 
 export const Home = () => {
     const [getSearchParams] = useSearchParams();
