@@ -126,9 +126,8 @@ export const EternityChallge = () => {
                     style={{ resize: "none" }}
                     readOnly
                     rows={1}
-                >
-                    {getTree}
-                </Form.Control>
+                    value={getTree}
+                ></Form.Control>
                 <CopyButton text={getTree}>Copy!</CopyButton>
             </InputGroup>
             <Row className="mt-3 justify-content-center">
